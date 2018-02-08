@@ -22,13 +22,6 @@ class Movie
     @id = movie['id'].to_i
   end
 
-  def find()
-    sql = "SELECT * from MOVIES WHERE id = $1"
-    values = [@id]
-    film = SqlRunner.run(sql, values)
-    return Movie.new(film[0])
-  end
-
   def update()
     sql = "UPDATE movies SET title = $1, genre = $2, rating = $3, budget = $4 WHERE id = $5"
     values = [@title, @genre, @rating, @budget, @id]
@@ -60,8 +53,6 @@ class Movie
   end
 
   def remove_fees_from_budget()
-    # Pull budget from Movie
-    budget = @budget.to_i
     # Pull fee(s) from Moviestar
     fees = castings().map {|star| star.fee.to_i}
     # Calculation total fees
@@ -69,7 +60,9 @@ class Movie
     # for fee in fees
     #   total_fees += fee
     # end
+  # or
     # fees.each {| fee | total_fees += fee}
+  # or
     total_fees = fees.sum
     # Movie Budget -= Total Fees
     @budget -= total_fees

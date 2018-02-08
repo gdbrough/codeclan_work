@@ -75,8 +75,6 @@ casting6.delete()
 # movie1.moviestars()
 # movie1.castings()
 
-# movie1.find()
-
 movie1.remove_fees_from_budget()
 
 binding.pry
