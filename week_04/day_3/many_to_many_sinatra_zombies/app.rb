@@ -7,4 +7,3 @@ require_relative('controllers/bitings_controller')
 get '/' do
   erb( :index )
 end
-
